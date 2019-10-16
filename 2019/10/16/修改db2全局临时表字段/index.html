@@ -4,20 +4,24 @@
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
   
-    <title>MyLife</title>
+    <title>修改db2全局临时表字段 | MyLife</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Hzs">
     
 
     
-    <meta property="og:type" content="website">
-<meta property="og:title" content="MyLife">
-<meta property="og:url" content="http://yoursite.com/index.html">
+    <meta name="description" content="这个题目本身就是错的，因为全局临时表不支持：  rename、alter、reorg、refresh、nickname、comments 和 lock 语句  假设有个临时表 easytmp.temp_hdmx，里面有个 jymc 字段为 char(20)，我需要将 jymc 改为 char(40) 该怎么办呢？答：我知道的就是删掉此表，然后重建了。 但是该怎么写建表的SQL语句？看着表结构自己写">
+<meta property="og:type" content="article">
+<meta property="og:title" content="修改db2全局临时表字段">
+<meta property="og:url" content="http://yoursite.com/2019/10/16/修改db2全局临时表字段/index.html">
 <meta property="og:site_name" content="MyLife">
+<meta property="og:description" content="这个题目本身就是错的，因为全局临时表不支持：  rename、alter、reorg、refresh、nickname、comments 和 lock 语句  假设有个临时表 easytmp.temp_hdmx，里面有个 jymc 字段为 char(20)，我需要将 jymc 改为 char(40) 该怎么办呢？答：我知道的就是删掉此表，然后重建了。 但是该怎么写建表的SQL语句？看着表结构自己写">
 <meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2019-10-16T08:42:48.681Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MyLife">
+<meta name="twitter:title" content="修改db2全局临时表字段">
+<meta name="twitter:description" content="这个题目本身就是错的，因为全局临时表不支持：  rename、alter、reorg、refresh、nickname、comments 和 lock 语句  假设有个临时表 easytmp.temp_hdmx，里面有个 jymc 字段为 char(20)，我需要将 jymc 改为 char(40) 该怎么办呢？答：我知道的就是删掉此表，然后重建了。 但是该怎么写建表的SQL语句？看着表结构自己写">
 
     
     <link rel="alternative" href="/atom.xml" title="MyLife" type="application/atom+xml">
@@ -71,12 +75,10 @@
 </div>
     </header>
     <div id="container">
-      <div id="main">
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
   <h1 itemprop="name">
     
       <a href="/2019/10/16/修改db2全局临时表字段/" title="修改db2全局临时表字段" itemprop="url">修改db2全局临时表字段</a>
@@ -90,9 +92,16 @@
     
   </p>
 </header>
-    <div class="article-content">
-        
-        <p>这个题目本身就是错的，因为全局临时表不支持：</p>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			
+		
+		</div>
+		
+		<p>这个题目本身就是错的，因为全局临时表不支持：</p>
 <ul>
 <li><a href="https://www.ibm.com/developerworks/cn/data/library/techarticles/dm-0912globaltemptable/index.html" target="_blank" rel="noopener">rename、alter、reorg、refresh、nickname、comments 和 lock 语句</a></li>
 </ul>
@@ -104,14 +113,9 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db2 “drop table 表名”  #删除此表</span><br><span class="line">db2 -tvf 输出文件名  #执行此文件中的SQL语句</span><br></pre></td></tr></table></figure>
 
 <p>这样一个 jymc 为 char(40) 的新临时表 easytmp.temp_hdmx 就建好了。</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
+  
+	</div>
+		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
 
@@ -119,124 +123,45 @@
 
 
 
-
-<div class="comments-count">
+	<div class="article-share" id="share">
 	
-</div>
+	  <div data-url="http://yoursite.com/2019/10/16/修改db2全局临时表字段/" data-title="修改db2全局临时表字段 | MyLife" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
 
 </footer>
 
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2019/10/15/我儿子/" title="我儿子" itemprop="url">我儿子</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Hzs" target="_blank" itemprop="author">Hzs</a>
-		
-  <p class="article-time">
-    <time datetime="2019-10-15T07:31:56.000Z" itemprop="datePublished"> Published 2019-10-15</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p><img src="/images/myson1.jpg" alt></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
+   	       
+	</article>
 	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2019/10/15/我儿子/"  title="我儿子">
+ <strong>下一篇：</strong><br/> 
+ <span>我儿子
+</span>
+</a>
 </div>
 
-</footer>
+</nav>
 
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2019/10/15/我老婆/" title="我老婆" itemprop="url">我老婆</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Hzs" target="_blank" itemprop="author">Hzs</a>
-		
-  <p class="article-time">
-    <time datetime="2019-10-15T07:31:34.000Z" itemprop="datePublished"> Published 2019-10-15</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p><img src="/images/mywife1.jpg" alt></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
 	
-</div>
-
-</footer>
-
-
-    </article>
 
 
 
-
-
-
-
-</div>
+</div>  
       <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ 
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
@@ -355,12 +280,89 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
 
 
 
@@ -433,4 +435,4 @@ var _hmt = _hmt || [];
 <!-- Tiny_search End -->
 
   </body>
- </html>
+</html>
