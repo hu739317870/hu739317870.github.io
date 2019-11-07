@@ -79,6 +79,64 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2019/11/07/原码—反码—补码/" title="原码—反码—补码" itemprop="url">原码—反码—补码</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Hzs" target="_blank" itemprop="author">Hzs</a>
+		
+  <p class="article-time">
+    <time datetime="2019-11-07T07:47:03.000Z" itemprop="datePublished"> Published 2019-11-07</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>正数：原码=反码=补码<br>负数：反码=原码所有位（符号位除外）取反； 补码=反码 + 1</p>
+<p>以 char 为例：<br>|  值   |  原码  |   反码  |  补码   |<br>|:————–:|:————–:|:———:|:——–:|<br>| 1 | 0000 0001 | 0000 0001 | 0000 0001|<br>|-1|1000 0001 | 1111 1110 | 1111 1111|<br>|127|  0111 1111 | 0111 1111 | 0111 1111|<br>|-127| 1111 1111 | 1000 0000 | 1000 0001|<br>|0| 0000 0000（正 0）|  0000 0000 | 0000 0000|<br>|-128|1000 0000（负 0） |1111 1111 | 1000 0000|<br>现在机器里存储的就是最后的 补码，通过补码就把正、负 0 区分开来了</p>
+<p>这样就有个问题需要注意了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n = -n;</span><br></pre></td></tr></table></figure>
+
+<p>这里 n 不能是最小负数，是的话 n 就会超过它的最大值。</p>
+<p>可以通过以下程序看一下最值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;limits.h&gt;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    /* int 型变量的最值,打印标准头文件得出 */</span><br><span class="line">	printf(&quot;%d\n&quot;, INT_MAX);</span><br><span class="line">	printf(&quot;%d\n&quot;, INT_MIN);</span><br><span class="line">	printf(&quot;%d\n&quot;, SCHAR_MAX);</span><br><span class="line">	printf(&quot;%d\n&quot;, SCHAR_MIN);</span><br><span class="line"></span><br><span class="line">    /* int 型变量的最值,直接计算方式得出 */</span><br><span class="line">	printf(&quot;%d\n&quot;, (int)((unsigned int) ~0 &gt;&gt; 1));</span><br><span class="line">	printf(&quot;%d\n&quot;, -(int)((unsigned int) ~0 &gt;&gt; 1) - 1);</span><br><span class="line"></span><br><span class="line">    /* 对1的二进制进行取反、存储，打印结果为 -2 */</span><br><span class="line">	printf(&quot;%d\n&quot;, ~1);</span><br><span class="line">    /* 对原码取反码、补码，存储补码，打印结果为 -2 */</span><br><span class="line">	printf(&quot;%d\n&quot;, -2);</span><br><span class="line">    /* 两者结果相同，因 ~1 正好为 -2 的补码 */</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2019/10/16/修改db2全局临时表字段/" title="修改db2全局临时表字段" itemprop="url">修改db2全局临时表字段</a>
   </h1>
   <p class="article-author">By

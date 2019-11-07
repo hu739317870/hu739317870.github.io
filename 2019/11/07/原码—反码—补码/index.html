@@ -4,24 +4,24 @@
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
   
-    <title>修改db2全局临时表字段 | MyLife</title>
+    <title>原码—反码—补码 | MyLife</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Hzs">
     
 
     
-    <meta name="description" content="这个题目本身就是错的，因为全局临时表不支持：  rename、alter、reorg、refresh、nickname、comments 和 lock 语句  假设有个临时表 easytmp.temp_hdmx，里面有个 jymc 字段为 char(20)，我需要将 jymc 改为 char(40) 该怎么办呢？答：我知道的就是删掉此表，然后重建了。 但是该怎么写建表的SQL语句？看着表结构自己写">
+    <meta name="description" content="正数：原码=反码=补码负数：反码=原码所有位（符号位除外）取反； 补码=反码 + 1 以 char 为例：|  值   |  原码  |   反码  |  补码   ||:————–:|:————–:|:———:|:——–:|| 1 | 0000 0001 | 0000 0001 | 0000 0001||-1|1000 0001 | 1111 1110 | 1111 1111||127|  01">
 <meta property="og:type" content="article">
-<meta property="og:title" content="修改db2全局临时表字段">
-<meta property="og:url" content="http://yoursite.com/2019/10/16/修改db2全局临时表字段/index.html">
+<meta property="og:title" content="原码—反码—补码">
+<meta property="og:url" content="http://yoursite.com/2019/11/07/原码—反码—补码/index.html">
 <meta property="og:site_name" content="MyLife">
-<meta property="og:description" content="这个题目本身就是错的，因为全局临时表不支持：  rename、alter、reorg、refresh、nickname、comments 和 lock 语句  假设有个临时表 easytmp.temp_hdmx，里面有个 jymc 字段为 char(20)，我需要将 jymc 改为 char(40) 该怎么办呢？答：我知道的就是删掉此表，然后重建了。 但是该怎么写建表的SQL语句？看着表结构自己写">
+<meta property="og:description" content="正数：原码=反码=补码负数：反码=原码所有位（符号位除外）取反； 补码=反码 + 1 以 char 为例：|  值   |  原码  |   反码  |  补码   ||:————–:|:————–:|:———:|:——–:|| 1 | 0000 0001 | 0000 0001 | 0000 0001||-1|1000 0001 | 1111 1110 | 1111 1111||127|  01">
 <meta property="og:locale" content="Chinese">
-<meta property="og:updated_time" content="2019-10-16T08:42:48.681Z">
+<meta property="og:updated_time" content="2019-11-07T07:47:54.029Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="修改db2全局临时表字段">
-<meta name="twitter:description" content="这个题目本身就是错的，因为全局临时表不支持：  rename、alter、reorg、refresh、nickname、comments 和 lock 语句  假设有个临时表 easytmp.temp_hdmx，里面有个 jymc 字段为 char(20)，我需要将 jymc 改为 char(40) 该怎么办呢？答：我知道的就是删掉此表，然后重建了。 但是该怎么写建表的SQL语句？看着表结构自己写">
+<meta name="twitter:title" content="原码—反码—补码">
+<meta name="twitter:description" content="正数：原码=反码=补码负数：反码=原码所有位（符号位除外）取反； 补码=反码 + 1 以 char 为例：|  值   |  原码  |   反码  |  补码   ||:————–:|:————–:|:———:|:——–:|| 1 | 0000 0001 | 0000 0001 | 0000 0001||-1|1000 0001 | 1111 1110 | 1111 1111||127|  01">
 
     
     <link rel="alternative" href="/atom.xml" title="MyLife" type="application/atom+xml">
@@ -81,14 +81,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2019/10/16/修改db2全局临时表字段/" title="修改db2全局临时表字段" itemprop="url">修改db2全局临时表字段</a>
+      <a href="/2019/11/07/原码—反码—补码/" title="原码—反码—补码" itemprop="url">原码—反码—补码</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Hzs" target="_blank" itemprop="author">Hzs</a>
 		
   <p class="article-time">
-    <time datetime="2019-10-16T08:41:56.000Z" itemprop="datePublished"> Published 2019-10-16</time>
+    <time datetime="2019-11-07T07:47:03.000Z" itemprop="datePublished"> Published 2019-11-07</time>
     
   </p>
 </header>
@@ -101,18 +101,15 @@
 		
 		</div>
 		
-		<p>这个题目本身就是错的，因为全局临时表不支持：</p>
-<ul>
-<li><a href="https://www.ibm.com/developerworks/cn/data/library/techarticles/dm-0912globaltemptable/index.html" target="_blank" rel="noopener">rename、alter、reorg、refresh、nickname、comments 和 lock 语句</a></li>
-</ul>
-<p>假设有个临时表 easytmp.temp_hdmx，里面有个 jymc 字段为 char(20)，我需要将 jymc 改为 char(40) 该怎么办呢？<br>答：我知道的就是删掉此表，然后重建了。</p>
-<p>但是该怎么写建表的SQL语句？看着表结构自己写出的语句很可能只是 <strong>形似</strong>，是没法在程序中使用的，这时就需要 <strong>db2look</strong>  了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db2look -d 数据库名 -a -e -i 用户名 -p 密码 -t 表名 -o 输出文件名</span><br></pre></td></tr></table></figure>
+		<p>正数：原码=反码=补码<br>负数：反码=原码所有位（符号位除外）取反； 补码=反码 + 1</p>
+<p>以 char 为例：<br>|  值   |  原码  |   反码  |  补码   |<br>|:————–:|:————–:|:———:|:——–:|<br>| 1 | 0000 0001 | 0000 0001 | 0000 0001|<br>|-1|1000 0001 | 1111 1110 | 1111 1111|<br>|127|  0111 1111 | 0111 1111 | 0111 1111|<br>|-127| 1111 1111 | 1000 0000 | 1000 0001|<br>|0| 0000 0000（正 0）|  0000 0000 | 0000 0000|<br>|-128|1000 0000（负 0） |1111 1111 | 1000 0000|<br>现在机器里存储的就是最后的 补码，通过补码就把正、负 0 区分开来了</p>
+<p>这样就有个问题需要注意了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n = -n;</span><br></pre></td></tr></table></figure>
 
-<p>这样就可以把这张表的建表语句导出到指定的 输出文件 当中了，然后将 输出文件 中的语句修改成你想要的后（例：将 jymc char(20) 改为 jymc char(40)），在终端中输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db2 “drop table 表名”  #删除此表</span><br><span class="line">db2 -tvf 输出文件名  #执行此文件中的SQL语句</span><br></pre></td></tr></table></figure>
+<p>这里 n 不能是最小负数，是的话 n 就会超过它的最大值。</p>
+<p>可以通过以下程序看一下最值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;limits.h&gt;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    /* int 型变量的最值,打印标准头文件得出 */</span><br><span class="line">	printf(&quot;%d\n&quot;, INT_MAX);</span><br><span class="line">	printf(&quot;%d\n&quot;, INT_MIN);</span><br><span class="line">	printf(&quot;%d\n&quot;, SCHAR_MAX);</span><br><span class="line">	printf(&quot;%d\n&quot;, SCHAR_MIN);</span><br><span class="line"></span><br><span class="line">    /* int 型变量的最值,直接计算方式得出 */</span><br><span class="line">	printf(&quot;%d\n&quot;, (int)((unsigned int) ~0 &gt;&gt; 1));</span><br><span class="line">	printf(&quot;%d\n&quot;, -(int)((unsigned int) ~0 &gt;&gt; 1) - 1);</span><br><span class="line"></span><br><span class="line">    /* 对1的二进制进行取反、存储，打印结果为 -2 */</span><br><span class="line">	printf(&quot;%d\n&quot;, ~1);</span><br><span class="line">    /* 对原码取反码、补码，存储补码，打印结果为 -2 */</span><br><span class="line">	printf(&quot;%d\n&quot;, -2);</span><br><span class="line">    /* 两者结果相同，因 ~1 正好为 -2 的补码 */</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>这样一个 jymc 为 char(40) 的新临时表 easytmp.temp_hdmx 就建好了。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -125,7 +122,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2019/10/16/修改db2全局临时表字段/" data-title="修改db2全局临时表字段 | MyLife" data-tsina="" class="share clearfix">
+	  <div data-url="http://yoursite.com/2019/11/07/原码—反码—补码/" data-title="原码—反码—补码 | MyLife" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -138,19 +135,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2019/11/07/原码—反码—补码/" title="原码—反码—补码">
-  <strong>上一篇：</strong><br/>
-  <span>
-  原码—反码—补码</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2019/10/15/我儿子/"  title="我儿子">
+<a href="/2019/10/16/修改db2全局临时表字段/"  title="修改db2全局临时表字段">
  <strong>下一篇：</strong><br/> 
- <span>我儿子
+ <span>修改db2全局临时表字段
 </span>
 </a>
 </div>
